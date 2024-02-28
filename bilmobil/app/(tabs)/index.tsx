@@ -1,32 +1,24 @@
-import { StyleSheet } from 'react-native';
-
+import CoursePackageCard from '@/components/CoursePackageCard';
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 
 export default function TabOneScreen() {
   return (
-    <View style={styles.container}>
-      <Text className="text-4xl">Tab One</Text>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+    <View>
+      <View>
+        <Text className='text-center font-bold text-xl'>Paketler</Text>
+        <View className='h-full space-y-4 items-center'>
+          <View className='flex'>
+            <CoursePackageCard name={'CS204'} price={550} description={'Advanced Programming'} image_url={'https://images.unsplash.com/photo-1498462440456-0dba182e775b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
+          </View>
+          <View>
+            <CoursePackageCard name={'CS204'} price={550} description={'Advanced Programming'} image_url={'https://images.unsplash.com/photo-1498462440456-0dba182e775b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
+          </View>
+          <View>
+            <CoursePackageCard name={'CS204'} price={550} description={'Advanced Programming'} image_url={'https://images.unsplash.com/photo-1498462440456-0dba182e775b?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'} />
+          </View>
+        </View>
+        </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
