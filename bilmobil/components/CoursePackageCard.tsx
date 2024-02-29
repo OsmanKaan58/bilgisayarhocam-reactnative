@@ -3,6 +3,8 @@ import { Image } from "expo-image";
 import { Pressable } from "react-native";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
+import { Link } from 'expo-router';
+import  RobotoStyledText  from "@/components/RobotoStyledText";
 type cardprop = {
   name: string;
   price: number;
@@ -13,8 +15,8 @@ type cardprop = {
 export default function CoursePackageCard(props: cardprop) {
   return (
     <View>
-      <View className="border-solid border-2 rounded-md w-40 h-40 items-center justify-center">
-        <View className="w-20 h-20">
+      <View className="border-solid border-2 rounded-md w-[300] h-[320] items-center justify-center shadow-lg">
+        <View className="w-[250] h-[200]">
           <Image
             source={{ uri: props.image_url }}
             contentFit="cover"
@@ -22,15 +24,18 @@ export default function CoursePackageCard(props: cardprop) {
             style={styles.image}
           />
         </View>
-        <Text>{props.name}</Text>
-        <Text>{props.price}</Text>
+              <RobotoStyledText className="text-xl" >{props.price}$</RobotoStyledText>
+              <RobotoStyledText className="text-xl">{props.name}</RobotoStyledText>
         <Pressable
           onPress={() => {
             console.log("Buy button pressed");
             router.push("/");
           }}
+          className="border-2 w-[100] rounded-md bg-black"
         >
-          <Text>Buy</Text>
+          <Link href="/course-info">
+            <Text className="text-white text-center text-2xl">Buy</Text>
+          </Link>
         </Pressable>
       </View>
     </View>
@@ -48,5 +53,9 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     backgroundColor: "#0553",
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "bold",
   },
 });

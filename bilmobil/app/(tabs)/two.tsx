@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
-
+import { useFonts } from 'expo-font';
 import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
+import * as Font from "expo-font";
+import  RobotoStyledText  from '@/components/RobotoStyledText';
 
 export default function TabTwoScreen() {
   return (
@@ -9,6 +11,8 @@ export default function TabTwoScreen() {
       <Text style={styles.title}>Tab Two</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="app/(tabs)/two.tsx" />
+      
+      <Text className='text-xl'>Tab Two</Text>
     </View>
   );
 }
