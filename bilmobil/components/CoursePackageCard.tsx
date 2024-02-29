@@ -3,8 +3,8 @@ import { Image } from "expo-image";
 import { Pressable } from "react-native";
 import { router } from "expo-router";
 import { StyleSheet } from "react-native";
-import { Link } from 'expo-router';
-import  RobotoStyledText  from "@/components/RobotoStyledText";
+import { Link } from "expo-router";
+import RobotoStyledText from "@/components/RobotoStyledText";
 type cardprop = {
   name: string;
   price: number;
@@ -24,19 +24,18 @@ export default function CoursePackageCard(props: cardprop) {
             style={styles.image}
           />
         </View>
-              <RobotoStyledText className="text-xl" >{props.price}$</RobotoStyledText>
-              <RobotoStyledText className="text-xl">{props.name}</RobotoStyledText>
-        <Pressable
-          onPress={() => {
-            console.log("Buy button pressed");
-            router.push("/");
-          }}
+        <RobotoStyledText className="text-xl">{props.price}$</RobotoStyledText>
+        <RobotoStyledText className="text-xl">{props.name}</RobotoStyledText>
+        <View
           className="border-2 w-[100] rounded-md bg-black"
         >
-          <Link href="/course-info">
-            <Text className="text-white text-center text-2xl">Buy</Text>
-          </Link>
-        </Pressable>
+          <Link href={{
+          pathname: "/course-info",
+          params: { id: props.name, price: props.price, description: props.description, image_url: props.image_url},
+        }}>
+          <RobotoStyledText className="text-white text-center text-2xl">Buy</RobotoStyledText>
+          </Link>        
+        </View>
       </View>
     </View>
   );

@@ -4,32 +4,40 @@ import EditScreenInfo from '@/components/EditScreenInfo';
 import { Text, View } from '@/components/Themed';
 import * as Font from "expo-font";
 import  RobotoStyledText  from '@/components/RobotoStyledText';
+import getBitcoinData from '@/APIfunctions/bitcoin';
+import { useState,useEffect } from 'react';
 
 export default function TabTwoScreen() {
+  let [bitcoinData, setBitcoin] = useState({
+    usdRate: "",
+    eurRate: "",
+    gbpRate: ""
+  });
+  useEffect(() => {
+    fetch("https://api.coindesk.com/v1/bpi/currentprice.json")
+      .then(response => response.json())
+      .then(data => {
+        setBitcoin({
+          usdRate: data.bpi.USD.rate,
+          eurRate: data.bpi.EUR.rate,
+          gbpRate: data.bpi.GBP.rate
+        })
+      })
+  },[])
+  let chartName = ""; 
+  getBitcoinData().then((data) => {
+    chartName = data;
+  });
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-      
-      <Text className='text-xl'>Tab Two</Text>
+    <View >
+      <View className='h-full flex items-center justify-center'>
+      <RobotoStyledText className='text-xl'>Bitcoin Values</RobotoStyledText>
+        <RobotoStyledText>USD: {bitcoinData.usdRate}</RobotoStyledText>
+        <RobotoStyledText>EURO: {bitcoinData.eurRate}</RobotoStyledText>
+        <RobotoStyledText>GBP: {bitcoinData.gbpRate}</RobotoStyledText>
+        </View>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+
